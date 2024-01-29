@@ -1,0 +1,29 @@
+<div class="card row" *ngIf="student!=undefined&&student.id!=9999 else noStudent">
+    <div class="card-body">
+        student detailes:
+        {{student.id}}
+        {{student.firstName}}
+        {{student.familyName}}
+        {{student.adress}}
+        {{student.phone}}
+        {{student.active}}
+        {{student.marksAvg}}
+        {{professionType[student.profession]}}
+        {{yearType[student.year]}}
+        <div *ngIf="!student.active">
+            {{student.leaveDate}}
+        </div>
+            <div [ngSwitch]="student.year">
+                <div *ngSwitchCase="yearType.First">num of days:250</div>
+                <div *ngSwitchCase="yearType.Second">num of days:200</div>
+                <div *ngSwitchCase="yearType.Third">num of days:100</div>
+                <div *ngSwitchDefault>no days!!!</div>
+            </div>
+    </div>
+</div>
+<!-- <show-tests [tests]="student.tests"></show-tests> -->
+<ng-template #noStudent>
+    <div class="card">
+        no student
+    </div>
+</ng-template>

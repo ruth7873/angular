@@ -1,0 +1,4 @@
+<h1 class="alert">{{calc_time()}}<br/>{{title}}</h1>
+<student-list (onSaveNewStudentSendTests)="sendTests($event)"></student-list>
+<app-show-tests [tests]="this.selectedStudent.tests"></app-show-tests>
+<app-observable></app-observable>

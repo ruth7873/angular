@@ -1,0 +1,100 @@
+<div *ngIf="this.selectedStudent.id!=9999&&!show">
+    <form [formGroup]="studentForm">
+        <div class="card">
+            <div class="form-group card-body">
+                <label for="id">id</label>
+                <input type="number" class="form-control" placeholder="id" id="id" name="id" formControlName="id" />
+                <ng-container *ngIf="this.studentForm.controls['id'].errors&&this.studentForm.controls['id'].touched">
+                    <div class="alert alert-danger"
+                        *ngIf="!studentForm.controls['id'].errors['required']&&selectedStudent.id==0">
+                        Enter id!!!</div>
+                    <div class="alert alert-danger" *ngIf="studentForm.controls['id'].errors['required']">this field
+                        isrequired</div>
+                </ng-container>
+            </div>
+            <div class="form-group card-body">
+                <label for="firstName">first name</label>
+                <input type="text" class="form-control" placeholder="firstName" id="firstName"
+                    formControlName="firstName" />
+                <ng-container
+                    *ngIf="this.studentForm.controls['firstName'].errors&&this.studentForm.controls['firstName'].touched">
+                    <div class="alert alert-danger" *ngIf="studentForm.controls['firstName'].errors['required']">this
+                        field
+                        is required</div>
+                    <div class="alert alert-danger"
+                        *ngIf="!studentForm.controls['firstName'].errors['required']&&!studentForm.controls['firstName'].errors['minLength']">
+                        at least
+                        3 letters</div>
+                </ng-container>
+            </div>
+            <div class="form-group card-body">
+                <label for="familyName">family name</label>
+                <input type="text" class="form-control" placeholder="familyName" id="familyName"
+                    formControlName="familyName" />
+                <ng-container
+                    *ngIf="this.studentForm.controls['familyName'].errors&&this.studentForm.controls['familyName'].touched">
+                    <div class="alert alert-danger" *ngIf="studentForm.controls['familyName'].errors['required']">this
+                        field
+                        is required</div>
+                    <div class="alert alert-danger"
+                        *ngIf="!studentForm.controls['familyName'].errors['required']&&!studentForm.controls['familyName'].errors['minLength']">
+                        at least
+                        3 letters</div>
+                </ng-container>
+            </div>
+            <div class="form-group card-body">
+                <label for="adress">adress</label>
+                <input type="text" class="form-control" placeholder="adress" id="adress" formControlName="adress" />
+            </div>
+            <div class="form-group card-body">
+                <label for="phone">phone</label>
+                <input type="text" class="form-control" placeholder="phone" id="phone" formControlName="phone" />
+                <ng-container *ngIf="studentForm.controls['phone'].errors&&this.studentForm.controls['phone'].touched">
+                    <div class="alert alert-danger" *ngIf="studentForm.controls['phone'].errors['required']">this field
+                        is required</div>
+                    <div class="alert alert-danger"
+                        *ngIf="!studentForm.controls['phone'].errors['required']&&!studentForm.controls['phone'].errors['maxLength']">
+                        too long
+                        phone number</div>
+                </ng-container>
+            </div>
+            <div class="form-group card-body">
+                <label for="profession">profession:</label>
+                <select class="form-control" formControlName="profession">
+                    <option [value]="professionType.Programing">Programing</option>
+                    <option [value]="professionType.Math">Math</option>
+                    <option [value]="professionType.Teaching">Teaching</option>
+                </select>
+            </div>
+            <div class="form-group card-body">
+                <label for="marksAvg">marks avg</label>
+                <input type="number" class="form-control" placeholder="marksAvg" id="marksAvg"
+                    formControlName="marksAvg" />
+            </div>
+            <div class="form-group card-body">
+                <label for="year">year:</label>
+                <br />
+                <input type="radio" name="year" value="1" formControlName="year" />First
+                <br />
+                <input type="radio" name="year" value="2" formControlName="year" />Second
+                <br />
+                <input type="radio" name="year" value="3" formControlName="year" />Third
+            </div>
+            <div class="card-body">
+                <div class="h1 alert-danger">absence days:{{getCountmissingDays(selectedStudent.id)}}</div>
+                <div class="form-group card-body">
+                    <label for="startDate">start date</label>
+                    <input type="date" class="form-control" placeholder="startDate" id="startDate"
+                        formControlName="startDate" [(ngModel)]="this.startDate" />
+                </div>
+                <div class="form-group card-body">
+                    <label for="countDays">count days</label>
+                    <input type="number" class="form-control" placeholder="countDays" id="countDays"
+                        formControlName="countDays" [(ngModel)]="this.countDays" />
+                </div>
+            </div>
+        </div>
+        <button type="submit" (click)="saveNewStudent()" class="btn btn-primary"
+            [disabled]="!studentForm.valid">Save</button>
+    </form>
+</div>

@@ -1,0 +1,30 @@
+<input type="checkbox" #chb (change)="showStudentByActive(chb.checked)"/>Show Active Students
+<input type="text" placeholder="enter name of student" />
+<ul class="list-group">
+    <li *ngFor="let student of students" class="list-group-item" [ngClass]="{'list-group-item-danger':student.active,
+                'active':selectedStudent&&selectedStudent.id==student.id,
+                'list-group-item-active':student.active}">
+        <div class="row">
+            <div class="col-1 form-group"></div>
+            <div class="col-1 form-group">{{student.id}}:</div>
+            <div class="col-2 form-group">{{student.familyName}}-{{student.firstName}}</div>
+            <div class="col-2 form-group">
+                <button (click)="showDetailes(student)">show detailes</button>
+            </div>
+            <div class="col-2 form-group">
+                <button (click)="editStudent(student)">edit student</button>
+            </div>
+            <div class="col-2 form-group">
+                <button (click)="deleteStudent(student.id)">delete student</button>
+            </div>
+            <div class="col-1 form-group">
+                absence days:{{getCountmissingDays(student.id)}}
+            </div>
+        </div>
+    </li>
+</ul>
+<button (click)="addStudent()">add student</button>
+<student-add [show]="show" [selectedStudent]="selectedStudent" (onSaveNewStudent)="addNewStudentToList($event)">
+</student-add>
+<!-- <app-student-edit (onEditStudent)="editStudent(this.selectedStudent)" (onSaveNewStudent)="addNewStudentToList($event)" *ngIf="this.selectedStudent" ></app-student-edit> -->
+<student-detailes [student]="selectedStudent"></student-detailes>

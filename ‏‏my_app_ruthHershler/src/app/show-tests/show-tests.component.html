@@ -1,0 +1,11 @@
+<ul *ngIf="tests!=undefined" class="list-group">
+    <div class="col-3">the average of your tests:{{calAvg()}}</div>
+    <li class="list-group-item" *ngFor="let test of tests">
+        <div class="row">
+            <div class="col-1 form-group">{{test.id}}:</div>
+            <div class="col-1 form-group">{{test.description}}</div>
+            <div class="col-1 form-group">{{test.date}}:</div>
+            <div class="col-1 form-group">{{test.mark}}</div>
+        </div>
+    </li>
+</ul>
