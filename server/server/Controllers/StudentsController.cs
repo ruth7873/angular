@@ -13,12 +13,12 @@ namespace WebApplication1.Controllers
     {
         public static List<Student> STUDENTS = new List<Student>
         {
-            new Student { id= 1, firstName= "Zipi", familyName="Lindenfeld", adress= "כהנמן 83 א בני ברק", phone= "0556776310", active= false, marksAvg=98, profession= 1, leaveDate= DateTime.Now, year= Year.First },
-            new Student{ id=2, firstName= "Ruth", familyName= "Hershler", adress= "פתח תקווה", phone= "0533137873", active= true, marksAvg= 99, leaveDate=DateTime.Now, profession=1, year= (Year)2 },
-            new Student { id= 3, firstName= "dfg", familyName="Lindenfeld", adress= "כהנמן 83 א בני ברק", phone= "0556776310", active= false, marksAvg=98, profession= 1, leaveDate= DateTime.Now, year= Year.First },
-            new Student{ id=4, firstName= "xcdvfbg", familyName= "Hershler", adress= "פתח תקווה", phone= "0533137873", active= true, marksAvg= 99, leaveDate=DateTime.Now, profession=1, year= (Year)2 },
-            new Student { id= 5, firstName= "sdfgh", familyName="Lindenfeld", adress= "כהנמן 83 א בני ברק", phone= "0556776310", active= false, marksAvg=98, profession= 1, leaveDate= DateTime.Now, year= Year.First },
-            new Student{ id=6, firstName= "dfghj", familyName= "Hershler", adress= "פתח תקווה", phone= "0533137873", active= true, marksAvg= 99, leaveDate=DateTime.Now, profession=1, year= (Year)2 }
+            new Student { id= 1, firstName= "Zipi", familyName="Lindenfeld", adress= "כהנמן 83 א בני ברק", phone= "0556776310", active= false, marksAvg=98, profession= 1, leaveDate= DateTime.Now, year=1 },
+            new Student{ id=2, firstName= "Ruth", familyName= "Hershler", adress= "פתח תקווה", phone= "0533137873", active= true, marksAvg= 99, leaveDate=DateTime.Now, profession=1, year= 2 },
+            new Student { id= 3, firstName= "dfg", familyName="Lindenfeld", adress= "כהנמן 83 א בני ברק", phone= "0556776310", active= false, marksAvg=98, profession= 1, leaveDate= DateTime.Now, year= 1 },
+            new Student{ id=4, firstName= "xcdvfbg", familyName= "Hershler", adress= "פתח תקווה", phone= "0533137873", active= true, marksAvg= 99, leaveDate=DateTime.Now, profession=1, year= 2 },
+            new Student { id= 5, firstName= "sdfgh", familyName="Lindenfeld", adress= "כהנמן 83 א בני ברק", phone= "0556776310", active= false, marksAvg=98, profession= 1, leaveDate= DateTime.Now, year= 1 },
+            new Student{ id=6, firstName= "dfghj", familyName= "Hershler", adress= "פתח תקווה", phone= "0533137873", active= true, marksAvg= 99, leaveDate=DateTime.Now, profession=1, year= 3 }
         };
         // GET: api/<TasksController>
         [HttpGet]
@@ -34,6 +34,11 @@ namespace WebApplication1.Controllers
             if (active)
                 return STUDENTS.Where(s => s.active);
             return STUDENTS;
+        }
+        [HttpGet("name={name}")]
+        public IEnumerable<Student>Get(string name)
+        {
+            return STUDENTS.Where(s=>s.firstName.Equals(name)||s.familyName.Equals(name));
         }
 
         // POST api/<TasksController>

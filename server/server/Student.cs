@@ -12,6 +12,6 @@
         public int marksAvg { get; set; }
         public DateTime leaveDate { get; set; }
         public int profession { get; set; }
-        public Year year { get; set; }
+        public int year { get; set; }
     }
 }

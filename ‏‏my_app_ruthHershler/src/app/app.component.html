@@ -1,4 +1,13 @@
-<h1 class="alert">{{calc_time()}}<br/>{{title}}</h1>
-<student-list (onSaveNewStudentSendTests)="sendTests($event)"></student-list>
+<!-- <h1 class="alert">{{calc_time()}}<br/>{{title}}</h1> -->
+<ul>
+    <li><a routerLink="/home">Home Page</a></li>
+    <li><a routerLink="/students">Students List</a></li>
+    <li><a routerLink="/dfg">fdg</a></li>
+
+</ul>
+
+<router-outlet></router-outlet>
+
+<!-- <student-list (onSaveNewStudentSendTests)="sendTests($event)"></student-list>
 <app-show-tests [tests]="this.selectedStudent.tests"></app-show-tests>
-<app-observable></app-observable>
+<app-observable></app-observable> -->

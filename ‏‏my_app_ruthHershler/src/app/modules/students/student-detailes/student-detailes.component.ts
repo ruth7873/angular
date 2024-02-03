@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from "@angular/core";
 import { AbsenceDays } from "../absence-days.model";
 import { Profession, Student, Year } from "../student.model";
+import { ActivatedRoute } from "@angular/router";
+import { StudentService } from "../student.service";
 
 @Component({
     selector: "student-detailes",
@@ -11,6 +13,8 @@ export class StudenDetailesComponent implements OnInit {
 
     @Input()
     student: Student=new Student();
+    id!: number;
+
 
     absenceDays: AbsenceDays[] = [];
 
@@ -31,11 +35,14 @@ export class StudenDetailesComponent implements OnInit {
         this.onSaveStudent.emit(this.student);
     }
 
-    constructor() {
+    constructor(private _studentService:StudentService, private _acr:ActivatedRoute) {
     }
     yearType = Year;
     professionType = Profession;
+    selectedStudent: Student = new Student();
 
-    ngOnInit(): void {
-    }
+ ngOnInit(): void {
+
+}
+
 }

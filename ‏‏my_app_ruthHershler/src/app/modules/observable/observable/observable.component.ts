@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, filter, from, interval, map } from 'rxjs';
-import { Student } from '../student.model';
-import { StudentService } from '../student.service';
-import { Test } from '../test.model';
-import { AbsenceDays } from '../absence-days.model';
+import { Student } from '../../students/student.model';
+import { StudentService } from '../../students/student.service';
+import { Test } from '../../students/test.model';
+import { AbsenceDays } from '../../students/absence-days.model';
 
 @Component({
   selector: 'app-observable',
@@ -19,8 +19,7 @@ export class ObservableComponent implements OnInit {
   // { id: 5, firstName: " איציק ", familyName: "לינדנפלד", adress: "בני ברק ", phone: `0504179302`, active: true, marksAvg: 100, leaveDate: new Date(), profession: 3, year: 1, tests: [new Test(1, new Date('10-10-2023'), "Test1", 100), new Test(2, new Date('01-01-2023'), "Test2", 100), new Test(3, new Date('10-20-2023'), "Test2", 100)], absenceDays: [new AbsenceDays(new Date('01-01-2023'), 10), new AbsenceDays(new Date('10-10-2023'), 2)] },
   // { id: 6, firstName: " קובי ", familyName: "לינדנפלד", adress: "בני ברק ", phone: `0504179302`, active: true, marksAvg: 100, leaveDate: new Date(), profession: 3, year: 1, tests: [new Test(1, new Date('10-10-2023'), "Test1", 100), new Test(2, new Date('01-01-2023'), "Test2", 98), new Test(3, new Date('10-20-2023'), "Test2", 99)], absenceDays: [new AbsenceDays(new Date('01-01-2023'), 10), new AbsenceDays(new Date('10-10-2023'), 2)] },
   // { id: 7, firstName: " רפאל ", familyName: "לינדנפלד", adress: "בני ברק ", phone: `0504179302`, active: true, marksAvg: 100, leaveDate: new Date(), profession: 3, year: 1, tests: [new Test(1, new Date('10-10-2023'), "Test1", 100), new Test(2, new Date('01-01-2023'), "Test2", 98), new Test(3, new Date('10-20-2023'), "Test2", 99)], absenceDays: [new AbsenceDays(new Date('01-01-2023'), 10), new AbsenceDays(new Date('10-10-2023'), 2)] }];
-  ngOnInit(): void { }
-  sendMail: Observable<string> = new Observable(obs => {
+   sendMail: Observable<string> = new Observable(obs => {
     for (var element of this.students) {
       if (element.active)
         obs.next(element.phone)
@@ -55,8 +54,9 @@ export class ObservableComponent implements OnInit {
     }
   });
   studentObservable = from(this.students);
-  constructor(private _studentService: StudentService) {
-     this._studentService.getStudentsFromServer().subscribe(data=>this.students=data);
+  constructor(private _studentService: StudentService) {}
+  ngOnInit(): void {
+    this._studentService.getStudentsFromServer().subscribe(data=>this.students=data);
     this.source.subscribe((val) => {
       this.x = val;
       console.log("1: ", val);
@@ -67,11 +67,12 @@ export class ObservableComponent implements OnInit {
     )
     this.time.subscribe((val) => {
       this.timer = val;
-
+      
     })
     this.timeInterval.subscribe((val) => {
       this.timerInterval = val
     })
-   
+    
   }
+
 }

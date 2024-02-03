@@ -1,5 +1,5 @@
 import { Component } from "@angular/core";
-import { Student } from './student.model';
+import { Student } from './modules/students/student.model';
 
 @Component({
     // template: `<p>{{calc_time()}}<br/>{{title}}</p><student-list></student-list>`,
@@ -28,8 +28,6 @@ export class AppComponent {
         this.selectedStudent = s;
     }
 
-    constructor() {
 
-    }
 }
 
