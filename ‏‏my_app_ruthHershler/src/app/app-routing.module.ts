@@ -5,12 +5,15 @@ import { StudentListComponent } from "./modules/students/student-list/student-li
 import { PageNotFoundComponent } from "./page-not-found/page-not-found.component";
 import { StudenDetailesComponent } from "./modules/students/student-detailes/student-detailes.component";
 import { StudenAddComponent } from "./modules/students/student-add.component.ts/student-add.component";
+import { LoginComponent } from "./modules/settings/login/login.component";
 
 const APP_ROUTES: Route[] = [
     { path: "", redirectTo: "home", pathMatch: "full" },
     { path: "home", component: HomeComponent },
     { path: "students", component: StudentListComponent },
     { path: "students/:id", component: StudenAddComponent },
+    {path:"account",loadChildren:()=>import("./modules/settings/settings.module").then(m=>m.SettingsModule)},
+    {path:"login",component:LoginComponent},
     { path: "**", component: PageNotFoundComponent }
 ]
 @NgModule({

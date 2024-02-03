@@ -15,7 +15,7 @@ export class StudenAddComponent implements OnInit {
     startDate!: Date;
     countDays!: number;
 
-    students:Student[]=[];
+    students: Student[] = [];
 
     totalMissingDays: number = 0;
 
@@ -60,32 +60,31 @@ export class StudenAddComponent implements OnInit {
     onSaveNewStudent: EventEmitter<Student> = new EventEmitter();
 
 
-    saveNewStudent() {        
+    saveNewStudent() {
         if (this.startDate && this.countDays && this.countDays > 0)
-        this.selectedStudent.absenceDays.push(new AbsenceDays(this.startDate, this.countDays));
-    this.selectedStudent.adress = this.studentForm.controls['adress'].value;
-    this.selectedStudent.familyName = this.studentForm.controls['familyName'].value;
-    this.selectedStudent.firstName = this.studentForm.controls['firstName'].value;
-        this.selectedStudent.id =this.students.length+1 //this.studentForm.controls['id'].value;
+            this.selectedStudent.absenceDays.push(new AbsenceDays(this.startDate, this.countDays));
+        this.selectedStudent.adress = this.studentForm.controls['adress'].value;
+        this.selectedStudent.familyName = this.studentForm.controls['familyName'].value;
+        this.selectedStudent.firstName = this.studentForm.controls['firstName'].value;
         this.selectedStudent.marksAvg = this.studentForm.controls['marksAvg'].value;
         this.selectedStudent.phone = this.studentForm.controls['phone'].value;
         this.selectedStudent.profession = this.studentForm.controls['profession'].value;
         this.selectedStudent.year = this.studentForm.controls['year'].value;
-        
+        if (!this.id)
+            this.selectedStudent.id = this.students.length + 1 //this.studentForm.controls['id'].value;
         //this.selectedStudent = this.studentForm.value;
         for (let i = 0; i < this.selectedStudent.absenceDays?.length; i++)
-        console.log(this.selectedStudent.absenceDays[i].countDays + " " + this.selectedStudent.absenceDays[i].startDate)
-    this.selectedStudent.active = true;
-    
-    this._router.navigate(["/students"],{ state: { student: this.selectedStudent }})   
-    this.onSaveNewStudent.emit(this.selectedStudent);
-}
-    getCountmissingDays(id:number):number{
+            console.log(this.selectedStudent.absenceDays[i].countDays + " " + this.selectedStudent.absenceDays[i].startDate)
+        this.selectedStudent.active = true;
+        this._router.navigate(["/students"], { state: { student: this.selectedStudent } })
+        this.onSaveNewStudent.emit(this.selectedStudent);
+    }
+    getCountmissingDays(id: number): number {
         return this._studentService.getCountAbsenceDaysForStudent(id);
     }
-    constructor(private _studentService:StudentService, private _acr:ActivatedRoute,private _router:Router) {
+    constructor(private _studentService: StudentService, private _acr: ActivatedRoute, private _router: Router) {
     }
-    id!:number;
+    id!: number;
     ngOnInit(): void {
         this._acr.paramMap.subscribe(paramMap => {
             if (paramMap) {
@@ -94,11 +93,10 @@ export class StudenAddComponent implements OnInit {
                 }
             }
         });
-    this._studentService.getStudentsFromServer().subscribe(data=>
-        {
-            if(this.id){
+        this._studentService.getStudentsFromServer().subscribe(data => {
+            if (this.id) {
 
-                this.selectedStudent=(data.find(x=>x.id==this.id)!);                
+                this.selectedStudent = (data.find(x => x.id == this.id)!);
             }
         })
         // this._studentService.getStudentsFromServer().subscribe(data =>

@@ -45,8 +45,8 @@ export class StudentListComponent implements OnInit {
         if (index != -1)
             this._studentService.updateStudent(studentToAdd).subscribe((d) => {
         if(d){
-                this.students[index] = studentToAdd;
-                this.getstudents();
+                // this.students[index] = studentToAdd;
+                this.getstudents();                
                 // }
             }}, err => alert("err"));
         else {

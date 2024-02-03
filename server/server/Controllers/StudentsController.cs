@@ -63,9 +63,9 @@ namespace WebApplication1.Controllers
                 student.leaveDate = value.leaveDate;
                 student.familyName = value.familyName;
                 student.firstName = value.firstName;
-                return Ok();
+                return Ok(true);
             }
-            return BadRequest("student is null!");
+            return Ok(false);
         }
 
         // DELETE api/<TasksController>/5

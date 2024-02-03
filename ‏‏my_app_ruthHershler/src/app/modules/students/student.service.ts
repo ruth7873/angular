@@ -28,7 +28,6 @@ export class StudentService {
         return this._http.get<Student[]>("api/Students/name="+name)
     }
     saveNewStudent(student: Student): Observable<boolean> {
-        console.log(student);
         return this._http.post<boolean>("api/Students", student)
     }
     updateStudent( student: Student): Observable<boolean> {
