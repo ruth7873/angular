@@ -1,0 +1,26 @@
+<p>directive-demo works!</p>
+
+<button ltr>rtl</button>
+<button ltr>ltr</button>
+
+<p [ngClass]="{'red-color':true}">
+    text
+</p>
+<p [appHighLight]="'red'" [class.active]="isActive" [attr.id]="id">aaa</p>
+<p [appHighLight]="'pink'">bbb</p>
+<p [appHighLight]="'blue'">ccc</p>
+<p appHighLight>ddd</p>
+<p [appHighLight]="'green'">eee</p>
+
+<ul ltr>
+    <li *ngFor="let t of aaa; let i=index;let odd=odd" [class.odd]="odd">
+        {{i+1}}: {{t}}</li>
+</ul>
+<ng-container [ngSwitch]="x">
+    <p *ngSwitchCase="'a'">
+        text a
+    </p>
+    <p *ngSwitchCase="'b'">
+        text b
+    </p>
+</ng-container>

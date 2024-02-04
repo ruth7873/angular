@@ -108,10 +108,9 @@ export class StudentListComponent implements OnInit {
         this.searchTerms.pipe(
             debounceTime(1000),
             distinctUntilChanged(),
-            switchMap((term: string) => this._studentService.getStudentsFromServerByName(this.studentName)),
-        ).subscribe(d => this.students = d);
+            switchMap(() => this._studentService.getStudentsFromServerByName(this.studentName)),
+        ).subscribe(data => this.students = data);
     }
-
     getStudentByName(): void {
         this.searchTerms.next(this.studentName);
     }

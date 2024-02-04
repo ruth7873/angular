@@ -38,7 +38,7 @@ namespace WebApplication1.Controllers
         [HttpGet("name={name}")]
         public IEnumerable<Student>Get(string name)
         {
-            return STUDENTS.Where(s=>s.firstName.Equals(name)||s.familyName.Equals(name));
+            return STUDENTS.Where(s=>s.firstName.Contains(name)||s.familyName.Contains(name));
         }
 
         // POST api/<TasksController>

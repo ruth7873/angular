@@ -24,17 +24,19 @@ export class StudentService {
     getStudentsFromServerByActive(active: boolean): Observable<Student[]> {
         return this._http.get<Student[]>("/api/Students/active=" + active)
     }
-    getStudentsFromServerByName(name:string):Observable<Student[]>{
-        return this._http.get<Student[]>("api/Students/name="+name)
+    getStudentsFromServerByName(name: string): Observable<Student[]> {
+        if (name == '')
+            return this.getStudentsFromServer()
+        return this._http.get<Student[]>("api/Students/name=" + name)
     }
     saveNewStudent(student: Student): Observable<boolean> {
         return this._http.post<boolean>("api/Students", student)
     }
-    updateStudent( student: Student): Observable<boolean> {
+    updateStudent(student: Student): Observable<boolean> {
         return this._http.put<boolean>(`api/Students/${student.id}`, student);
     }
-    deleteStudent(id:number):Observable<boolean>{
-        return this._http.delete<boolean>("api/Students/"+id);
+    deleteStudent(id: number): Observable<boolean> {
+        return this._http.delete<boolean>("api/Students/" + id);
     }
     // getStudents(): Student[] {
     //      return STUDENTS;

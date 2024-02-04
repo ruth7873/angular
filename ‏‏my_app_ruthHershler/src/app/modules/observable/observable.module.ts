@@ -1,14 +1,16 @@
 import { NgModule } from "@angular/core";
-import { BrowserModule } from "@angular/platform-browser";
 import { ObservableComponent } from "./observable/observable.component";
-import { RouterModule } from "@angular/router";
+import { DirectiveDemoComponent } from './directive-demo/directive-demo.component';
+import { DemoRoutingModule } from "./demo-routing.module";
+import { CommonModule } from "@angular/common";
+import { HighLightDirective } from "./directive-demo/highlight.directive";
+import { LtrDirective } from "./directive-demo/ltr.directive";
 
 @NgModule({
-declarations:[ObservableComponent],
-imports:[BrowserModule,RouterModule],
+declarations:[ObservableComponent, DirectiveDemoComponent,HighLightDirective,LtrDirective],
+imports:[CommonModule,DemoRoutingModule],
 exports:[ObservableComponent],
 })
 
 export class ObservableModule{
-
 }
