@@ -71,12 +71,13 @@ export class StudenAddComponent implements OnInit {
         this.selectedStudent.profession = this.studentForm.controls['profession'].value;
         this.selectedStudent.year = this.studentForm.controls['year'].value;
         if (!this.id)
-            this.selectedStudent.id = this.students.length + 1 //this.studentForm.controls['id'].value;
+            this.selectedStudent.id = -1//this.studentForm.controls['id'].value;
+        
         //this.selectedStudent = this.studentForm.value;
         for (let i = 0; i < this.selectedStudent.absenceDays?.length; i++)
             console.log(this.selectedStudent.absenceDays[i].countDays + " " + this.selectedStudent.absenceDays[i].startDate)
         this.selectedStudent.active = true;
-        this._router.navigate(["/students"], { state: { student: this.selectedStudent } })
+        this._router.navigate(["/students"], { state: { student: this.selectedStudent , update:true } })
         this.onSaveNewStudent.emit(this.selectedStudent);
     }
     getCountmissingDays(id: number): number {

@@ -43,9 +43,10 @@ namespace WebApplication1.Controllers
 
         // POST api/<TasksController>
         [HttpPost]
-        public void Post([FromBody] Student student)
+        public IActionResult Post([FromBody] Student student)
         {
             STUDENTS.Add(student);
+            return Ok(true);
         }
 
         // PUT api/<TasksController>/5

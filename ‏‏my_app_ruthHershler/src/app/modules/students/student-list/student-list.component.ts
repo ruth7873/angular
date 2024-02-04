@@ -44,18 +44,20 @@ export class StudentListComponent implements OnInit {
         let index = this.students?.findIndex(s => studentToAdd.id == s.id);
         if (index != -1)
             this._studentService.updateStudent(studentToAdd).subscribe((d) => {
-        if(d){
-                // this.students[index] = studentToAdd;
-                this.getstudents();                
-                // }
-            }}, err => alert("err"));
+                if (d) {
+                    // this.students[index] = studentToAdd;
+                    // alert("update success!")
+                    this.getstudents();
+                    // }
+                }
+            }, err => alert(err));
         else {
-            alert(studentToAdd)
-            this._studentService.saveNewStudent(studentToAdd).subscribe(() => {
-                // if (data) {
+            studentToAdd.id = this.students.length + 1;            
+            this._studentService.saveNewStudent(studentToAdd).subscribe((data) => {
+                 if (data) {
                 alert("add success!")
                 this.students.push(studentToAdd)
-                // }
+                }
             }, err => alert(err));
         }
 
@@ -82,9 +84,14 @@ export class StudentListComponent implements OnInit {
     ngOnInit(): void {
         this.getstudents();
         this.g();
+        // let ifUpdate: boolean = false;        
         const student = history.state.student;
-        if (student)
+        if (student) {
             this.addNewStudentToList(student)
+            // alert(ifUpdate)
+            // ifUpdate = !ifUpdate
+            // alert(ifUpdate)
+        }
     }
     getstudents() {
         this._studentService.getStudentsFromServer().subscribe(data =>
